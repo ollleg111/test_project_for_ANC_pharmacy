@@ -3,7 +3,6 @@ package com.example.demo.service;
 import com.example.demo.dao.UrlDAO;
 import com.example.demo.exceptions.BedRequestException;
 import com.example.demo.util.ShortStringGenerator;
-import com.example.demo.util.Utils;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.validator.routines.UrlValidator;

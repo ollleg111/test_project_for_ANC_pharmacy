@@ -20,6 +20,6 @@ public class ShortStringGenerator {
         for (int i = 0; i < urlLength; i++) {
             sb.append(alphabet.charAt(random.nextInt(alphabet.length())));
         }
-        return "http://localhost:8080/backString/?".concat(sb.toString());
+        return Constants.BACK_STRING_UPPER.concat(sb.toString());
     }
 }
