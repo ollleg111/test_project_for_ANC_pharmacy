@@ -42,7 +42,7 @@ public class UserController {
             User user = userService.login(mail, password);
             session.setAttribute("user", user);
             log.info(" login complete ");
-            log.info(" User with id: " + user.getId() + " get logged ");
+            log.info(" User with id: " + user.getId() + " hed logged ");
             return new ResponseEntity<>(" login complete ", HttpStatus.OK);
     }
 

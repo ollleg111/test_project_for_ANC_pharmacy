@@ -34,7 +34,7 @@ public class UrlController {
         loginValidation(session);
         log.info("In method getOriginalUrl entered url: " + url);
         String originalUrl = urlService.getOriginalUrl(url);
-        log.info("Back url: " + originalUrl);
+        log.info("In method getOriginalUrl we have back url: " + originalUrl);
         return new ResponseEntity<>(originalUrl, HttpStatus.OK);
     }
 }
