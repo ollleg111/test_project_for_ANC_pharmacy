@@ -3,7 +3,6 @@ import com.example.demo.models.User;
 import com.example.demo.service.UserService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.log4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -17,7 +16,6 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class UserController {
     private final UserService userService;
-    private final static Logger logger = Logger.getLogger(UserController.class);
 
     @PostMapping(value = "/register")
     public ResponseEntity<String> registerUser(
@@ -28,9 +26,10 @@ public class UserController {
             user.setName(name);
             user.setMail(mail);
             user.setPassword(pass);
+            long id = (long) (Math.random() * 1000000);
+            user.setId(id);
         userService.save(user);
-        log.info("Register user with data: " + user.getName() + " and " + user.getMail());
-        logger.info("Register user with data: " + user.getName() + " and " + user.getMail());
+        log.info(" Register user with id: " + user.getId());
         return new ResponseEntity(" User was saved ", HttpStatus.OK);
     }
 
@@ -43,7 +42,7 @@ public class UserController {
             User user = userService.login(mail, password);
             session.setAttribute("user", user);
             log.info(" login complete ");
-            logger.info(" login complete ");
+            log.info(" User with id: " + user.getId() + " get logged ");
             return new ResponseEntity<>(" login complete ", HttpStatus.OK);
     }
 
@@ -52,7 +51,6 @@ public class UserController {
     {
             session.invalidate();
             log.info("logout complete");
-            logger.info("logout complete");
             return new ResponseEntity<>("logout complete", HttpStatus.OK);
     }
 }

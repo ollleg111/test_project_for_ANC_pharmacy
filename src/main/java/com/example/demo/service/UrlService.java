@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 import com.example.demo.dao.UrlDAO;
 import com.example.demo.exceptions.BedRequestException;
+import com.example.demo.util.ShortStringGenerator;
 import com.example.demo.util.Utils;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -16,12 +17,8 @@ public class UrlService {
     private final String alarmMessage = UrlService.class.getName();
 
     public String getShortUrlString(String originalString) {
-//        validation(originalString);
-/*
-        TwoStrings twoStrings = urlDAO.getObject(originalString);
-        if (Objects.nonNull(twoStrings)) return twoStrings.getShortString();
-*/
-        String shortString = Utils.stringGenerator();
+        validation(originalString);
+        String shortString = new ShortStringGenerator().stringGenerator();
         urlDAO.save(originalString, shortString);
         return shortString;
     }
@@ -31,6 +28,7 @@ public class UrlService {
     }
 
     public void validation(String originalString) throws BedRequestException {
+        log.info("validation " + originalString);
         final UrlValidator urlValidator = new UrlValidator();
         if (!urlValidator.isValid(originalString)) throw
                 new BedRequestException(" Status 404: Invalid URL in method" +

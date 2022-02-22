@@ -19,11 +19,11 @@ public class UserService {
 
     public User login(String mail, String password) throws BedRequestException {
         if (mail.isEmpty() || password.isEmpty())
-            throw new BedRequestException(" Status 404: Incorrect email or password");
+            throw new BedRequestException(" Status 404: Incorrect email or password ");
 
         User user = userDAO.getUser(mail, password);
         if (user == null)
-            throw new BedRequestException(" Status 404: User with email or password does not exist");
+            throw new BedRequestException(" Status 404: User with email or password does not exist ");
         return user;
     }
 

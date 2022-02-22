@@ -7,7 +7,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Slf4j
 @Repository
@@ -16,13 +15,8 @@ public class UrlDAO {
     private final String alarmMessage = UrlDAO.class.getName();
 
     public void save(String originalString, String shortString) {
+        log.info(originalString + " " + shortString + " was saved");
         urlDAOList.add(new TwoStrings(originalString, shortString));
-    }
-
-    public TwoStrings getObject(String originalUrl) {
-        return urlDAOList.stream().
-                filter(s -> s.getOriginalString().equals(originalUrl)).
-                collect(Collectors.toList()).get(0);
     }
 
     public String getOriginalUrl(String shortUrl) throws NotFoundException {
